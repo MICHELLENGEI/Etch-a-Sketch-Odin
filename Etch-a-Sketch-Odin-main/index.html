@@ -3,24 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Etch-a-Sketch</title>
+    
 </head>
 <body>
+    <h1>HAPPY SKETCHING</h1>
     <div class="container"></div>
     
     <script>
 
 const container = document.querySelector('.container');
-container.style.background = 'black'
-container.style.width = '100%'
-container.style.height = '100vh'
+container.style.background = 'black';
+container.style.width = '100%';
+container.style.height = '100vh';
 
-const grid = document.createElement('div')
-grid.style.background= '#b942f5'
-grid.style.height = '16px'
-grid.style.width = '16px'
+let gridSize;
 
-container.appendChild(grid)
+do {
+    gridSize = prompt('Enter the number of squares per side for the new grid (less than 100):');
+
+    // Check if the input is not a number, or if it's less than or equal to 0, or if it's greater than or equal to 100
+    if (isNaN(gridSize) || gridSize <= 0 || gridSize >= 100) {
+        alert('Please enter a valid integer less than 100.');
+    }
+} while (isNaN(gridSize) || gridSize <= 0 || gridSize >= 100);
+
+gridSize = parseInt(gridSize); // Convert input to an integer
+
+for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+        const grid = document.createElement('div');
+        grid.classList.add('grids');
+        grid.style.width = 'calc(100% / ' + gridSize + ')';
+        grid.style.height = 'calc(100% / ' + gridSize + ')';
+        grid.style.float = 'left';
+
+         
+         grid.addEventListener('mouseenter', () => {
+            const randomColor = getRandomColor(); 
+            grid.style.backgroundColor = randomColor;
+        });
+
+        container.appendChild(grid);
+    }
+}
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256); 
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
     </script>
 </body>
 </html>

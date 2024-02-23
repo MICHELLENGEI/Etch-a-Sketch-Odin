@@ -1,0 +1,17 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1{
+   color: rgb(187, 127, 255);
+   text-align: center;
+   font-size: 48px;
+}
+
+.grids{
+    margin: 0.5px;
+}
+.grids:focus{
+    background:#fff
+}
